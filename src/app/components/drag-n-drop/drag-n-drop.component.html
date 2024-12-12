@@ -1,0 +1,34 @@
+<div class="w-screen p-2">
+  <div cdkDropListGroup class="flex gap-5">
+    <div class="w-96">
+      <h2>Form Controls</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="todo"
+        [cdkDropListSortingDisabled]="true"
+        class="example-list">
+        @for (item of todo; track item) {
+          <div class="example-box" [cdkDragDisabled]="false" cdkDrag>{{item}}</div>
+        }
+      </div>
+    </div>
+  
+    <div class="flex-1">
+      <h2>Sandbox</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="done"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of done; track item; let idx = $index) {
+          <div class="example-box relative" cdkDrag>
+            {{item}}
+            <button class="absolute top-1 right-3" (click)="removeFromSelected(idx)">X</button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
